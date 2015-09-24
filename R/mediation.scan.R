@@ -16,7 +16,7 @@
 #' @export
 
 mediation.scan <- function(target, mediator, annotation, qtl.geno, covar=NULL,
-                           method=c(), verbose=TRUE) {
+                           method=c("ignore", "lod-diff", "double-lod-diff", "lod-ratio"), verbose=TRUE) {
 
   # check input
   stopifnot(NROW(target) == NROW(mediator))
