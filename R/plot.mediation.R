@@ -7,11 +7,12 @@
 #'
 #' @param medresults
 #' @param chrlen length of chromosomes as in \code{org.Mm.egCHRLENGTHS}
+#' @param verbose if TRUE then prints "Finished!" when done
 #' @author Steven C. Munger
 
 #' @export
 
-plot.mediation = function(medresults, chrlen = mouse.chrlen, ...){
+plot.mediation = function(medresults, chrlen = mouse.chrlen, verbose=TRUE, ...){
 
   #Check input
   stopifnot(c("CHR", "POS","LOD") %in% toupper(names(medresults)))
@@ -77,7 +78,7 @@ plot.mediation = function(medresults, chrlen = mouse.chrlen, ...){
 
   #### Create the plot
   par(font = 2, font.lab = 2, font.axis = 2, xaxs="i",las = 1, mar=c(3, 4, 3, 1) + 0.1)
-  plot(gmb.mediation.extended, c(0,medresults$LOD,0), col = 0, ylim = c(0, max(medresults$LOD)*1.05),ylab = "Conditioned LOD", xaxt = "n", xlab = "")
+  plot(gmb.mediation.extended, c(0,medresults$LOD,0), col = 0, ylim = c(0, max(medresults$LOD)*1.05),ylab = "Conditioned LOD", xaxt = "n", xlab = "", ...)
   usr = par("usr")
   rect(chrlen[2 * 1:(length(chrlen) * 0.5) - 1], usr[3],
        chrlen[2 * 1:(length(chrlen) * 0.5)], usr[4],
