@@ -7,6 +7,7 @@
 #'
 #' @param medresults
 #' @param chrlen length of chromosomes as in \code{org.Mm.egCHRLENGTHS}
+#' @author Steven C. Munger
 
 #' @export
 
