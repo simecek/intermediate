@@ -1,0 +1,10 @@
+Package: intermediate
+Type: Package
+Title: eQTl/pQTL Mediation analysis
+Version: 0.1-0
+Date: 2015-09-24
+Author: Petr Simecek, Steve Munger, Gary Churchill
+Maintainer: Petr Simecek <petrs@jax.org>
+Description: It searches for a mediator M that would explain Q->T relationship
+License: GPL
+LazyData: TRUE
