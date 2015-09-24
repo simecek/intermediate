@@ -19,7 +19,6 @@ plot.mediation = function(medresults, chrlen = mouse.chrlen, ...){
   names(medresults) = toupper(names(medresults))
 
   #Find unique chromosomes in results input, then pull out their lengths and calculate midpoints for plotting
-  chrlen = org.Mm.egCHRLENGTHS
   medresults$CHR = sub("X","20",medresults$CHR)
   medresults$CHR = sub("Y","21",medresults$CHR)
   medresults$CHR = sub("M","22",medresults$CHR)
