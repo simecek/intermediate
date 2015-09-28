@@ -5,7 +5,8 @@
 \title{Mediation Scan}
 \usage{
 mediation.scan(target, mediator, annotation, qtl.geno, covar = NULL,
-  method = c(), verbose = TRUE)
+  method = c("ignore", "lod-diff", "double-lod-diff", "lod-ratio"),
+  verbose = TRUE)
 }
 \arguments{
 \item{target}{numeric vector with gene/protein expression}
@@ -27,5 +28,15 @@ For a given QTL haplotype probabilities `Q` and target `T`, the function tries t
 possible mediators `M` and calculates LOD statistic. The low LOD value indicates `Q` and
 `T` are conditionally independent given `M`, i.e. M is a mediator of causal relationship
 for `Q` to T.
+}
+\examples{
+data(Tmem68)
+med <- mediation.scan(target=Tmem68$target,
+                      mediator=Tmem68$mediator,
+                      annotation=Tmem68$annotation,
+                      covar=Tmem68$covar,
+                      qtl.geno=Tmem68$qtl.geno,
+                      method="double-lod-diff")
+plot(med, main="double-lod-diff")
 }
 

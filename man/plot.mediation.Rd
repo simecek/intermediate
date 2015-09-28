@@ -4,17 +4,23 @@
 \alias{plot.mediation}
 \title{Plots conditioned LOD scores against genome position}
 \usage{
-\method{plot}{mediation}(medresults, chrlen = mouse.chrlen, ...)
+\method{plot}{mediation}(medresults, col = "firebrick4",
+  chrlen = mouse.chrlen, verbose = TRUE, ...)
 }
 \arguments{
 \item{medresults}{}
 
 \item{chrlen}{length of chromosomes as in \code{org.Mm.egCHRLENGTHS}}
+
+\item{verbose}{if TRUE then prints "Finished!" when done}
 }
 \description{
 For a given QTL haplotype probabilities `Q` and target `T`, the function tries to add all
 possible mediators `M` and calculates LOD statistic. The low LOD value indicates `Q` and
 `T` are conditionally independent given `M`, i.e. M is a mediator of causal relationship
 for `Q` to T.
+}
+\author{
+Steven C. Munger
 }
 
