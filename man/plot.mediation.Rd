@@ -5,10 +5,10 @@
 \title{Plots conditioned LOD scores against genome position}
 \usage{
 \method{plot}{mediation}(medresults, col = "firebrick4",
-  chrlen = mouse.chrlen, verbose = TRUE, ...)
+  chrlen = mouse.chrlen, verbose = FALSE, ...)
 }
 \arguments{
-\item{medresults}{}
+\item{medresults}{mediation object}
 
 \item{chrlen}{length of chromosomes as in \code{org.Mm.egCHRLENGTHS}}
 
