@@ -7,6 +7,7 @@ Author: Petr Simecek, Steve Munger, Gary Churchill
 Maintainer: Petr Simecek <petrs@jax.org>
 Description: It searches for a mediator M that would explain Q->T relationship
 Suggested: testjs,
+           htmlwidgets,
            knitr,
            testthat
 License: GPL-3

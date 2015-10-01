@@ -30,7 +30,7 @@ plot.mediation <- function(medresults, col="firebrick4", chrlen=mouse.chrlen, ve
   stopifnot(c("CHR", "POS","LOD") %in% names(medresults))
 
   if (!("GMB" %in% names(medresults)))
-    medresults$GMB <- gmb.coordinates(medresults$CHR, medresults$POS)
+    medresults$GMB <- gmb.coordinates(medresults$CHR, medresults$POS, chrlen=chrlen)
 
   # reorganize chr-lengths as in gmb.coordinates
   max.chr <- max(as.numeric(medresults$CHR[grep("[0-9]+", medresults$CHR)]))

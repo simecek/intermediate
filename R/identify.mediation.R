@@ -1,5 +1,7 @@
 #' Identify Dot in Mediation Plot
 #'
+#' Enables user to click on a plot and get a correcsponting
+#' line of the annotation data frame.
 #'
 #' @param medresults mediation object
 #' @param label.col column of medresults to be plotted
