@@ -16,4 +16,7 @@ gmb.coordinates(chr, pos, chrlen = mouse.chrlen)
 \description{
 For plotting, convert (chr, mb) coordinates to (gmb) coordinated
 }
+\examples{
+gmb <- gmb.coordinates(Tmem68$annotation$Chr, Tmem68$annotation$Pos)
+}
 

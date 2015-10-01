@@ -20,6 +20,16 @@ possible mediators `M` and calculates LOD statistic. The low LOD value indicates
 `T` are conditionally independent given `M`, i.e. M is a mediator of causal relationship
 for `Q` to T.
 }
+\examples{
+data(Tmem68)
+med <- mediation.scan(target=Tmem68$target,
+                      mediator=Tmem68$mediator,
+                      annotation=Tmem68$annotation,
+                      covar=Tmem68$covar,
+                      qtl.geno=Tmem68$qtl.geno,
+                      method="double-lod-diff")
+plot(med, main="double-lod-diff")
+}
 \author{
 Steven C. Munger
 }

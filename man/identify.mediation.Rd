@@ -14,4 +14,15 @@
 \description{
 Identify Dot in Mediation Plot
 }
+\examples{
+data(Tmem68)
+med <- mediation.scan(target=Tmem68$target,
+                      mediator=Tmem68$mediator,
+                      annotation=Tmem68$annotation,
+                      covar=Tmem68$covar,
+                      qtl.geno=Tmem68$qtl.geno,
+                      method="double-lod-diff")
+plot(med, main="double-lod-diff")
+identify(med)
+}
 

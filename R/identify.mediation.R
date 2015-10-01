@@ -5,6 +5,16 @@
 #' @param label.col column of medresults to be plotted
 
 #' @export
+#' @examples
+#' data(Tmem68)
+#' med <- mediation.scan(target=Tmem68$target,
+#'                       mediator=Tmem68$mediator,
+#'                       annotation=Tmem68$annotation,
+#'                       covar=Tmem68$covar,
+#'                       qtl.geno=Tmem68$qtl.geno,
+#'                       method="double-lod-diff")
+#' plot(med, main="double-lod-diff")
+#' identify(med)
 
 identify.mediation <- function(medresults, label.col="Associated.Gene.Name"){
   names(medresults) = toupper(names(medresults))

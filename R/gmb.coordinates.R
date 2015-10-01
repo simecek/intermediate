@@ -8,6 +8,8 @@
 #' @param chrlen length of chromosomes as in \code{org.Mm.egCHRLENGTHS}
 
 #' @export
+#' @examples
+#' gmb <- gmb.coordinates(Tmem68$annotation$Chr, Tmem68$annotation$Pos)
 
 gmb.coordinates <- function(chr, pos, chrlen=mouse.chrlen) {
 
