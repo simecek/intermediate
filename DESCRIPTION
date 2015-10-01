@@ -6,7 +6,7 @@ Date: 2015-09-28
 Author: Petr Simecek, Steve Munger, Gary Churchill
 Maintainer: Petr Simecek <petrs@jax.org>
 Description: It searches for a mediator M that would explain Q->T relationship
-Suggested: testjs,
+Suggested: qtlcharts,
            htmlwidgets,
            knitr,
            testthat

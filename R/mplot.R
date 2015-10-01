@@ -32,7 +32,7 @@ mplot <- function(medresults, symbol.col="Associated.Gene.Name", chrlen=mouse.ch
 
   #Check input
   stopifnot(c("CHR", "POS","LOD") %in% names(medresults))
-  if (!require(testjs)) stop("Requires 'testjs' package, use devtools::install_github('kbroman/testjs') to get it.")
+  if (!require(qtlcharts, quietly=TRUE)) stop("Requires 'qtlcharts' package, use devtools::install_github('kbroman/qtlcharts') to get it.")
 
   if (!("GMB" %in% names(medresults)))
     medresults$GMB <- gmb.coordinates(medresults$CHR, medresults$POS, chrlen=chrlen)
