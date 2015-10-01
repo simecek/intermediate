@@ -3,5 +3,5 @@
 S3method(identify,mediation)
 S3method(plot,mediation)
 export(gmb.coordinates)
+export(kplot)
 export(mediation.scan)
-export(mplot)
