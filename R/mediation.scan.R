@@ -26,7 +26,7 @@
 #' plot(med, main="double-lod-diff")
 
 mediation.scan <- function(target, mediator, annotation, qtl.geno, covar=NULL,
-                           method=c("ignore", "lod-diff", "double-lod-diff", "lod-ratio"), verbose=TRUE) {
+                           method=c("double-lod-diff", "ignore", "lod-diff", "lod-ratio"), verbose=TRUE) {
 
   # check input
   stopifnot(NROW(target) == NROW(mediator))

@@ -5,7 +5,7 @@
 \title{Mediation Scan}
 \usage{
 mediation.scan(target, mediator, annotation, qtl.geno, covar = NULL,
-  method = c("ignore", "lod-diff", "double-lod-diff", "lod-ratio"),
+  method = c("double-lod-diff", "ignore", "lod-diff", "lod-ratio"),
   verbose = TRUE)
 }
 \arguments{
