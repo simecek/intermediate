@@ -30,7 +30,7 @@ mediation.scan <- function(target, mediator, annotation, qtl.geno, covar=NULL,
 
   # calculates log10-Likelihood of linear model y ~ 1 + X
   LL <- function(y, X) {
-    -length(y)/2*log10(sum(lm(y ~ X)$res^2))
+    -length(y)/2*log10(sum(lsfit(X, y, intercept=TRUE)$res^2))
   }
 
   # check input
