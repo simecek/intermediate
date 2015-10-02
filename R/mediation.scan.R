@@ -28,6 +28,11 @@
 mediation.scan <- function(target, mediator, annotation, qtl.geno, covar=NULL,
                            method=c("double-lod-diff", "ignore", "lod-diff", "lod-ratio"), verbose=TRUE) {
 
+  # calculates log10-Likelihood of linear model y ~ 1 + X
+  LL <- function(y, X) {
+    logLik(lm(y ~ X))/log(10)
+  }
+
   # check input
   stopifnot(NROW(target) == NROW(mediator))
   stopifnot(NROW(annotation) == NCOL(mediator))
@@ -49,29 +54,29 @@ mediation.scan <- function(target, mediator, annotation, qtl.geno, covar=NULL,
   LOD <- rep(NA, N) # prepare output
 
   if (method == "double-lod-diff") {
-    LOD0 <- logLik(lm(target ~ covar + qtl.geno))/log(10) - logLik(lm(target ~ covar))/log(10)
+    LOD0 <- LL(target, cbind(covar, qtl.geno)) - LL(target, covar)
   }
 
   # for-loop comparing M0: target~covar+mediator[,i] vs M1: target~covar+mediator[,i]+qtl.geno
   for (i in 1:N) {
     if (verbose & i %% 1000 == 0) print(i)
     no.na <- !is.na(target) & !is.na(mediator[,i])
-    loglik0 <- logLik(lm(target[no.na] ~ covar[no.na,] + mediator[no.na,i]))
-    loglik1 <- logLik(lm(target[no.na] ~ covar[no.na,] + mediator[no.na,i] + qtl.geno[no.na,]))
+    loglik0 <- LL(target[no.na], cbind(covar[no.na,], mediator[no.na,i]))
+    loglik1 <- LL(target[no.na], cbind(covar[no.na,], mediator[no.na,i], qtl.geno[no.na,]))
 
     if (method == "ignore" | (method == "double-lod-diff" & all(no.na))) {
       # "double-lod-diff" for no missing observation is identical to "ignore"
-      LOD[i] <- (loglik1 - loglik0) / log(10)
+      LOD[i] <- loglik1 - loglik0
     } else {
-      loglik2 <- logLik(lm(target[no.na] ~ covar[no.na,]))
-      loglik3 <- logLik(lm(target[no.na] ~ covar[no.na,] + qtl.geno[no.na,]))
+      loglik2 <- LL(target[no.na], covar[no.na,])
+      loglik3 <- LL(target[no.na], cbind(covar[no.na,], qtl.geno[no.na,]))
 
       if (method == "lod-diff") {
-        LOD[i] <- (loglik3 - loglik2 - (loglik1-loglik0)) / log(10)
+        LOD[i] <- loglik3 - loglik2 - (loglik1-loglik0)
       } else if (method == "double-lod-diff") {
-        LOD[i] <- LOD0 - (loglik3 - loglik2 - (loglik1-loglik0)) / log(10)
+        LOD[i] <- LOD0 - (loglik3 - loglik2 - (loglik1-loglik0))
       } else if (method == "lod-ratio") {
-        LOD[i] <- (loglik1-loglik0) / (loglik3 - loglik2)
+        LOD[i] <- (10^loglik1-10^loglik0) / (10^loglik3 - 10^loglik2)
       }
     }
   }
