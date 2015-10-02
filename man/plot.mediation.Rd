@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.mediation.R
 \name{plot.mediation}
 \alias{plot.mediation}
-\title{Plots conditioned LOD scores against genome position}
+\title{Plots conditioned LOD scores against genomic positions}
 \usage{
 \method{plot}{mediation}(medresults, col = "firebrick4",
   chrlen = mouse.chrlen, verbose = FALSE, ...)
@@ -15,10 +15,7 @@
 \item{verbose}{if TRUE then prints "Finished!" when done}
 }
 \description{
-For a given QTL haplotype probabilities `Q` and target `T`, the function tries to add all
-possible mediators `M` and calculates LOD statistic. The low LOD value indicates `Q` and
-`T` are conditionally independent given `M`, i.e. M is a mediator of causal relationship
-for `Q` to T.
+Plot LOD statistics calculated by \code{mediation.scan} against genomic positions.
 }
 \examples{
 data(Tmem68)
@@ -32,5 +29,8 @@ plot(med, main="double-lod-diff")
 }
 \author{
 Steven C. Munger
+}
+\seealso{
+\code{\link{identify.mediation}}, \code{\link{kplot}}
 }
 

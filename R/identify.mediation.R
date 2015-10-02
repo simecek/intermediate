@@ -1,12 +1,12 @@
 #' Identify Dot in Mediation Plot
 #'
-#' Enables user to click on a plot and get a correcsponting
-#' line of the annotation data frame.
+#' Enables user to identify dot on a plot produced by \code{plot.mediation}.
 #'
 #' @param medresults mediation object
-#' @param label.col column of medresults to be plotted
+#' @param label.col column of medresults to be added next to the dot
 
 #' @export
+#' @seealso \code{\link{plot.mediation}}
 #' @examples
 #' data(Tmem68)
 #' med <- mediation.scan(target=Tmem68$target,

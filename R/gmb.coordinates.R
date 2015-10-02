@@ -1,13 +1,14 @@
-#' For chromosome and position, calculates genomic coordinate
+#' For chromosome and position, calculates a genomic coordinate
 #'
-#' For plotting, convert (chr, mb) coordinates to (gmb) coordinated
+#' Convert (chr, mb) coordinates to (gmb) coordinates
 #'
 #'
 #' @param chr chromosome
-#' @param pos position in bases or Mb
-#' @param chrlen length of chromosomes as in \code{org.Mm.egCHRLENGTHS}
+#' @param pos position (b or Mb)
+#' @param chrlen lengths of chromosomes as in \code{org.Mm.egCHRLENGTHS}
 
 #' @export
+#' @seealso \code{\link{plot.mediation}}
 #' @examples
 #' gmb <- gmb.coordinates(Tmem68$annotation$Chr, Tmem68$annotation$Pos)
 

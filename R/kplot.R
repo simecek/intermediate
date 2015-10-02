@@ -1,15 +1,16 @@
 #' Karl Broman's Interactive Plot of conditioned LOD scores
 #'
-#' For a given QTL haplotype probabilities `Q` and target `T`, the function tries to add all
-#' possible mediators `M` and calculates LOD statistic. The low LOD value indicates `Q` and
-#' `T` are conditionally independent given `M`, i.e. M is a mediator of causal relationship
-#' for `Q` to T.
+#'
+#' Plot LOD statistics calculated by \code{mediation.scan} against
+#' genomic positions. Display a gene name when hovering a mouse over.
+#'
 #'
 #' @param medresults mediation object
-#' @param symbol.col column with gene name
+#' @param symbol.col column with gene names
 #' @param chrlen length of chromosomes as in \code{org.Mm.egCHRLENGTHS}
 
 #' @export
+#' @seealso \code{\link{plot.mediation}}, \code{\link{mediation.scan}}
 #' @examples
 #' data(Tmem68)
 #' med <- mediation.scan(target=Tmem68$target,

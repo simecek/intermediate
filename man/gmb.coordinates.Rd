@@ -2,21 +2,24 @@
 % Please edit documentation in R/gmb.coordinates.R
 \name{gmb.coordinates}
 \alias{gmb.coordinates}
-\title{For chromosome and position, calculates genomic coordinate}
+\title{For chromosome and position, calculates a genomic coordinate}
 \usage{
 gmb.coordinates(chr, pos, chrlen = mouse.chrlen)
 }
 \arguments{
 \item{chr}{chromosome}
 
-\item{pos}{position in bases or Mb}
+\item{pos}{position (b or Mb)}
 
-\item{chrlen}{length of chromosomes as in \code{org.Mm.egCHRLENGTHS}}
+\item{chrlen}{lengths of chromosomes as in \code{org.Mm.egCHRLENGTHS}}
 }
 \description{
-For plotting, convert (chr, mb) coordinates to (gmb) coordinated
+Convert (chr, mb) coordinates to (gmb) coordinates
 }
 \examples{
 gmb <- gmb.coordinates(Tmem68$annotation$Chr, Tmem68$annotation$Pos)
+}
+\seealso{
+\code{\link{plot.mediation}}
 }
 

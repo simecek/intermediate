@@ -1,9 +1,6 @@
-#' Plots conditioned LOD scores against genome position
+#' Plots conditioned LOD scores against genomic positions
 #'
-#' For a given QTL haplotype probabilities `Q` and target `T`, the function tries to add all
-#' possible mediators `M` and calculates LOD statistic. The low LOD value indicates `Q` and
-#' `T` are conditionally independent given `M`, i.e. M is a mediator of causal relationship
-#' for `Q` to T.
+#' Plot LOD statistics calculated by \code{mediation.scan} against genomic positions.
 #'
 #' @param medresults mediation object
 #' @param verbose if TRUE then prints "Finished!" when done
@@ -12,6 +9,7 @@
 #' @author Steven C. Munger
 
 #' @export
+#' @seealso \code{\link{identify.mediation}}, \code{\link{kplot}}
 #' @examples
 #' data(Tmem68)
 #' med <- mediation.scan(target=Tmem68$target,

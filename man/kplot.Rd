@@ -10,15 +10,13 @@ kplot(medresults, symbol.col = "Associated.Gene.Name",
 \arguments{
 \item{medresults}{mediation object}
 
-\item{symbol.col}{column with gene name}
+\item{symbol.col}{column with gene names}
 
 \item{chrlen}{length of chromosomes as in \code{org.Mm.egCHRLENGTHS}}
 }
 \description{
-For a given QTL haplotype probabilities `Q` and target `T`, the function tries to add all
-possible mediators `M` and calculates LOD statistic. The low LOD value indicates `Q` and
-`T` are conditionally independent given `M`, i.e. M is a mediator of causal relationship
-for `Q` to T.
+Plot LOD statistics calculated by \code{mediation.scan} against
+genomic positions. Display a gene name when hovering a mouse over.
 }
 \examples{
 data(Tmem68)
@@ -34,5 +32,8 @@ pl <- kplot(med, symbol.col="Associated.Gene.Name")
 tmpdir <- tempdir()
 htmlwidgets::saveWidget(pl, paste0(tmpdir, "/Tmem68.html"),
                         selfcontained=FALSE, libdir = "_assets")
+}
+\seealso{
+\code{\link{plot.mediation}}, \code{\link{mediation.scan}}
 }
 

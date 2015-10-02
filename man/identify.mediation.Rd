@@ -9,11 +9,10 @@
 \arguments{
 \item{medresults}{mediation object}
 
-\item{label.col}{column of medresults to be plotted}
+\item{label.col}{column of medresults to be added next to the dot}
 }
 \description{
-Enables user to click on a plot and get a correcsponting
-line of the annotation data frame.
+Enables user to identify dot on a plot produced by \code{plot.mediation}.
 }
 \examples{
 data(Tmem68)
@@ -25,5 +24,8 @@ med <- mediation.scan(target=Tmem68$target,
                       method="double-lod-diff")
 plot(med, main="double-lod-diff")
 identify(med)
+}
+\seealso{
+\code{\link{plot.mediation}}
 }
 

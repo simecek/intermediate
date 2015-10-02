@@ -9,25 +9,26 @@ mediation.scan(target, mediator, annotation, qtl.geno, covar = NULL,
   verbose = TRUE)
 }
 \arguments{
-\item{target}{numeric vector with gene/protein expression}
+\item{target}{a numeric vector with gene/protein expression}
 
-\item{mediator}{matrix, each column is one gene/protein's expression}
+\item{mediator}{a matrix, each column is one gene/protein's expression}
 
-\item{annotation}{data.frame with mediator annotation, must include columns "chr" and "pos"}
+\item{annotation}{a data frame with mediators' annotation, must include columns "chr" and "pos"}
 
-\item{qtl.geno}{matrix, haplotype probabilities at QTL we try to mediate}
+\item{qtl.geno}{a matrix, haplotype probabilities at QTL we try to mediate}
 
-\item{covar}{additive covariates}
+\item{covar}{a matrix with additive covariates}
 
-\item{method}{select a method to handle missing cases}
+\item{method}{a method to handle missing cases}
 
-\item{verbose}{if TRUE, display information about the progress}
+\item{verbose}{if TRUE display information about the progress}
 }
 \description{
-For a given QTL haplotype probabilities `Q` and target `T`, the function tries to add all
-possible mediators `M` and calculates LOD statistic. The low LOD value indicates `Q` and
-`T` are conditionally independent given `M`, i.e. M is a mediator of causal relationship
-for `Q` to T.
+For a given QTL haplotype probabilities \code{qtl.geno} and target \code{target},
+the function sequentially tries to add each column \code{m} of \code{mediator} matrix as a covariate
+and calculates LOD statistic. The low LOD value indicates \code{qtl.geno} and
+\code{target} are conditionally independent given \code{m},
+i.e. \code{m} is a mediator of causal relationship from \code{qtl.geno} to \code{target}.
 }
 \examples{
 data(Tmem68)
@@ -38,5 +39,8 @@ med <- mediation.scan(target=Tmem68$target,
                       qtl.geno=Tmem68$qtl.geno,
                       method="double-lod-diff")
 plot(med, main="double-lod-diff")
+}
+\seealso{
+\code{\link{plot.mediation}}, \code{\link{kplot}}
 }
 

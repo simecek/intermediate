@@ -1,19 +1,22 @@
 #' Mediation Scan
 #'
-#' For a given QTL haplotype probabilities `Q` and target `T`, the function tries to add all
-#' possible mediators `M` and calculates LOD statistic. The low LOD value indicates `Q` and
-#' `T` are conditionally independent given `M`, i.e. M is a mediator of causal relationship
-#' for `Q` to T.
+#' For a given QTL haplotype probabilities \code{qtl.geno} and target \code{target},
+#' the function sequentially tries to add each column \code{m} of \code{mediator} matrix as a covariate
+#' and calculates LOD statistic. The low LOD value indicates \code{qtl.geno} and
+#' \code{target} are conditionally independent given \code{m},
+#' i.e. \code{m} is a mediator of causal relationship from \code{qtl.geno} to \code{target}.
 #'
-#' @param target numeric vector with gene/protein expression
-#' @param mediator matrix, each column is one gene/protein's expression
-#' @param annotation data.frame with mediator annotation, must include columns "chr" and "pos"
-#' @param qtl.geno matrix, haplotype probabilities at QTL we try to mediate
-#' @param covar additive covariates
-#' @param method select a method to handle missing cases
-#' @param verbose if TRUE, display information about the progress
+#'
+#' @param target a numeric vector with gene/protein expression
+#' @param mediator a matrix, each column is one gene/protein's expression
+#' @param annotation a data frame with mediators' annotation, must include columns "chr" and "pos"
+#' @param qtl.geno a matrix, haplotype probabilities at QTL we try to mediate
+#' @param covar a matrix with additive covariates
+#' @param method a method to handle missing cases
+#' @param verbose if TRUE display information about the progress
 
 #' @export
+#' @seealso \code{\link{plot.mediation}}, \code{\link{kplot}}
 
 #' @examples
 #' data(Tmem68)
