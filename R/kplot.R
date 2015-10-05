@@ -48,5 +48,6 @@ kplot <- function(medresults, symbol.col="Associated.Gene.Name", chrlen=mouse.ch
   names(chrcolor) <- unique.chr
 
   iplot(x=medresults$GMB, y=medresults$LOD,
-        indID=symbols, group = chrcolor[medresults$CHR], ...)
+        indID=symbols, group = chrcolor[medresults$CHR], 
+        chartOpts = list(xlab="Genomic position (Mb)", ylab="LOD"),  ...)
 }
