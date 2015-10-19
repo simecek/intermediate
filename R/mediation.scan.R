@@ -57,7 +57,8 @@ mediation.scan <- function(target, mediator, annotation, qtl.geno, covar=NULL,
   LOD <- rep(NA, N) # prepare output
 
   if (method == "double-lod-diff") {
-    LOD0 <- LL(target, cbind(covar, qtl.geno)) - LL(target, covar)
+    no.na <- !is.na(target)
+    LOD0 <- LL(target[no.na], cbind(covar, qtl.geno)[no.na,]) - LL(target[no.na], covar[no.na,])
   }
 
   # for-loop comparing M0: target~covar+mediator[,i] vs M1: target~covar+mediator[,i]+qtl.geno
