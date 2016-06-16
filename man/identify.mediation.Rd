@@ -2,27 +2,29 @@
 % Please edit documentation in R/identify.mediation.R
 \name{identify.mediation}
 \alias{identify.mediation}
-\title{Identify Dot in Mediation Plot}
+\title{Identify dot in mediation plot}
 \usage{
-\method{identify}{mediation}(medresults, label.col = "Associated.Gene.Name")
+\method{identify}{mediation}(med, label.col = "symbol")
 }
 \arguments{
-\item{medresults}{mediation object}
+\item{med}{A mediation object}
 
-\item{label.col}{column of medresults to be added next to the dot}
+\item{label.col}{A column name of \code{med} to be used to be plotted}
+}
+\value{
+A row from \code{med} corresponding to the point nearest to the click.
 }
 \description{
-Enables user to identify dot on a plot produced by \code{plot.mediation}.
+Enable user to identify a dot on a plot produced by \code{\link{plot.mediation}}.
 }
 \examples{
 data(Tmem68)
-med <- mediation.scan(target=Tmem68$target,
-                      mediator=Tmem68$mediator,
-                      annotation=Tmem68$annotation,
-                      covar=Tmem68$covar,
-                      qtl.geno=Tmem68$qtl.geno,
-                      method="double-lod-diff")
-plot(med, main="double-lod-diff")
+med <- mediation.scan(target = Tmem68$target,
+                      mediator = Tmem68$mediator,
+                      annotation = Tmem68$annotation,
+                      covar = Tmem68$covar,
+                      qtl.geno = Tmem68$qtl.geno)
+plot(med)
 identify(med)
 }
 \seealso{

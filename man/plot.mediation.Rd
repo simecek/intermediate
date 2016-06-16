@@ -4,15 +4,15 @@
 \alias{plot.mediation}
 \title{Plots conditioned LOD scores against genomic positions}
 \usage{
-\method{plot}{mediation}(medresults, col = "firebrick4",
-  chrlen = mouse.chrlen, verbose = FALSE, ...)
+\method{plot}{mediation}(med, col = "firebrick4", chrlen = mouse.chrlen,
+  ...)
 }
 \arguments{
-\item{medresults}{mediation object}
+\item{med}{A mediation object}
 
-\item{chrlen}{length of chromosomes as in \code{org.Mm.egCHRLENGTHS}}
+\item{col}{A color of points}
 
-\item{verbose}{if TRUE then prints "Finished!" when done}
+\item{chrlen}{A vector with chromosome lengths (as in \code{org.Mm.egCHRLENGTHS})}
 }
 \description{
 Plot LOD statistics calculated by \code{mediation.scan} against genomic positions.
@@ -23,12 +23,8 @@ med <- mediation.scan(target=Tmem68$target,
                       mediator=Tmem68$mediator,
                       annotation=Tmem68$annotation,
                       covar=Tmem68$covar,
-                      qtl.geno=Tmem68$qtl.geno,
-                      method="double-lod-diff")
-plot(med, main="double-lod-diff")
-}
-\author{
-Steven C. Munger
+                      qtl.geno=Tmem68$qtl.geno)
+plot(med)
 }
 \seealso{
 \code{\link{identify.mediation}}, \code{\link{kplot}}

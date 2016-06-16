@@ -9,19 +9,19 @@ mediation.scan(target, mediator, annotation, qtl.geno, covar = NULL,
   verbose = TRUE)
 }
 \arguments{
-\item{target}{a numeric vector with gene/protein expression}
+\item{target}{A numeric vector with gene/protein expression}
 
-\item{mediator}{a matrix, each column is one gene/protein's expression}
+\item{mediator}{A matrix, each column is one gene/protein's expression}
 
-\item{annotation}{a data frame with mediators' annotation, must include columns "chr" and "pos"}
+\item{annotation}{A data frame with mediators' annotation, must include columns "chr" and "pos"}
 
-\item{qtl.geno}{a matrix, haplotype probabilities at QTL we try to mediate}
+\item{qtl.geno}{A matrix, haplotype probabilities at QTL we try to mediate}
 
-\item{covar}{a matrix with additive covariates}
+\item{covar}{A matrix with additive covariates}
 
-\item{method}{a method to handle missing cases}
+\item{method}{A method to handle missing cases}
 
-\item{verbose}{if TRUE display information about the progress}
+\item{verbose}{If TRUE display information about the progress}
 }
 \description{
 For a given QTL haplotype probabilities \code{qtl.geno} and target \code{target},
@@ -32,13 +32,13 @@ i.e. \code{m} is a mediator of causal relationship from \code{qtl.geno} to \code
 }
 \examples{
 data(Tmem68)
-med <- mediation.scan(target=Tmem68$target,
-                      mediator=Tmem68$mediator,
-                      annotation=Tmem68$annotation,
-                      covar=Tmem68$covar,
-                      qtl.geno=Tmem68$qtl.geno,
-                      method="double-lod-diff")
-plot(med, main="double-lod-diff")
+med <- mediation.scan(target = Tmem68$target,
+                      mediator = Tmem68$mediator,
+                      annotation = Tmem68$annotation,
+                      covar = Tmem68$covar,
+                      qtl.geno = Tmem68$qtl.geno,
+                      method = "double-lod-diff")
+plot(med)
 }
 \seealso{
 \code{\link{plot.mediation}}, \code{\link{kplot}}

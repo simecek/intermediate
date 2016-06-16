@@ -2,17 +2,19 @@
 % Please edit documentation in R/kplot.R
 \name{kplot}
 \alias{kplot}
-\title{Karl Broman's Interactive Plot of conditioned LOD scores}
+\title{Karl Broman's interactive plot of conditioned LOD scores}
 \usage{
-kplot(medresults, symbol.col = "Associated.Gene.Name",
-  chrlen = mouse.chrlen, ...)
+kplot(med, symbol.col = "symbol", chrlen = mouse.chrlen, ...)
 }
 \arguments{
-\item{medresults}{mediation object}
+\item{med}{A mediation object}
 
-\item{symbol.col}{column with gene names}
+\item{symbol.col}{A column of \code{med} with gene names}
 
-\item{chrlen}{length of chromosomes as in \code{org.Mm.egCHRLENGTHS}}
+\item{chrlen}{A vector with chromosome lengths (as in \code{org.Mm.egCHRLENGTHS})}
+}
+\value{
+Htmlwidget \code{iplot}
 }
 \description{
 Plot LOD statistics calculated by \code{mediation.scan} against
@@ -20,15 +22,15 @@ genomic positions. Display a gene name when hovering a mouse over.
 }
 \examples{
 data(Tmem68)
-med <- mediation.scan(target=Tmem68$target,
-                      mediator=Tmem68$mediator,
-                      annotation=Tmem68$annotation,
-                      covar=Tmem68$covar,
-                      qtl.geno=Tmem68$qtl.geno)
-kplot(med, symbol.col="Associated.Gene.Name")
+med <- mediation.scan(target = Tmem68$target,
+                      mediator = Tmem68$mediator,
+                      annotation = Tmem68$annotation,
+                      covar = Tmem68$covar,
+                      qtl.geno = Tmem68$qtl.geno)
+kplot(med, symbol.col="symbol")
 
 # save the plot as HTML page
-pl <- kplot(med, symbol.col="Associated.Gene.Name")
+pl <- kplot(med, symbol.col="symbol")
 tmpdir <- tempdir()
 htmlwidgets::saveWidget(pl, paste0(tmpdir, "/Tmem68.html"),
                         selfcontained=FALSE, libdir = "_assets")

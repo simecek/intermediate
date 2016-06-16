@@ -2,22 +2,30 @@
 % Please edit documentation in R/gmb.coordinates.R
 \name{gmb.coordinates}
 \alias{gmb.coordinates}
-\title{For chromosome and position, calculates a genomic coordinate}
+\title{Convert genomic coordinates}
 \usage{
 gmb.coordinates(chr, pos, chrlen = mouse.chrlen)
 }
 \arguments{
-\item{chr}{chromosome}
+\item{chr}{A character vector of chromosomes}
 
-\item{pos}{position (b or Mb)}
+\item{pos}{A numeric vector of positions (b or Mb)}
 
-\item{chrlen}{lengths of chromosomes as in \code{org.Mm.egCHRLENGTHS}}
+\item{chrlen}{A vector with chromosome lengths (as in \code{org.Mm.egCHRLENGTHS})}
+}
+\value{
+A numeric vector with cummulative (gmb) genomic coordinates.
 }
 \description{
-Convert (chr, mb) coordinates to (gmb) coordinates
+Convert genomic coordinates from (chr, mb) representation to
+cummulative (gmb) representation.
+}
+\details{
+A cummulative (gmb) form could be useful for example as
+x-coordinate of a genomic plot.
 }
 \examples{
-gmb <- gmb.coordinates(Tmem68$annotation$Chr, Tmem68$annotation$Pos)
+gmb <- gmb.coordinates(Tmem68$annotation$chr, Tmem68$annotation$pos)
 }
 \seealso{
 \code{\link{plot.mediation}}
