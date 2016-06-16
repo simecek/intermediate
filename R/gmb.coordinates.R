@@ -1,24 +1,29 @@
-#' For chromosome and position, calculates a genomic coordinate
+#' Convert genomic coordinates
 #'
-#' Convert (chr, mb) coordinates to (gmb) coordinates
+#' Convert genomic coordinates from (chr, mb) representation to 
+#' cummulative (gmb) representation. 
+#' 
+#' A cummulative (gmb) form could be useful for example as 
+#' x-coordinate of a genomic plot.
 #'
-#'
-#' @param chr chromosome
-#' @param pos position (b or Mb)
-#' @param chrlen lengths of chromosomes as in \code{org.Mm.egCHRLENGTHS}
-
-#' @export
+#' @param chr A character vector of chromosomes
+#' @param pos A numeric vector of positions (b or Mb)
+#' @param chrlen A vector with chromosome lengths (as in \code{org.Mm.egCHRLENGTHS})
+#' 
+#' @return A numeric vector with cummulative (gmb) genomic coordinates.
+#' 
 #' @seealso \code{\link{plot.mediation}}
 #' @examples
-#' gmb <- gmb.coordinates(Tmem68$annotation$Chr, Tmem68$annotation$Pos)
+#' gmb <- gmb.coordinates(Tmem68$annotation$chr, Tmem68$annotation$pos)
+#' @export
 
-gmb.coordinates <- function(chr, pos, chrlen=mouse.chrlen) {
+gmb.coordinates <- function(chr, pos, chrlen = mouse.chrlen) {
 
   # chr must be numeric or X or Y or M
   chr <- as.character(chr)
   stopifnot(grepl("[0-9]+", chr) | chr %in% c("X", "Y", "M") )
 
-  # length of all chrs must be given
+  # length of all chromosomes must be given
   stopifnot(chr %in% names(chrlen))
 
   # pos must be finite, non-negative, numberic
@@ -44,9 +49,6 @@ gmb.coordinates <- function(chr, pos, chrlen=mouse.chrlen) {
   # cumulative chr. lengths (=shift)
   chrcumsum <- c(0, cumsum(chrlen))
   names(chrcumsum) <- c(names(chrlen), "End") # shift by 1
-
-  # middle chr. position
-  chrmid <- chrcumsum[-length(chrcumsum)] + (diff(chrcumsum) * 0.5)
 
   gmb <- pos + chrcumsum[chr]
   return(gmb)

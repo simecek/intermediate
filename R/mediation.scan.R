@@ -7,29 +7,35 @@
 #' i.e. \code{m} is a mediator of causal relationship from \code{qtl.geno} to \code{target}.
 #'
 #'
-#' @param target a numeric vector with gene/protein expression
-#' @param mediator a matrix, each column is one gene/protein's expression
-#' @param annotation a data frame with mediators' annotation, must include columns "chr" and "pos"
-#' @param qtl.geno a matrix, haplotype probabilities at QTL we try to mediate
-#' @param covar a matrix with additive covariates
-#' @param method a method to handle missing cases
-#' @param verbose if TRUE display information about the progress
-
-#' @export
+#' @param target A numeric vector with gene/protein expression
+#' @param mediator A matrix, each column is one gene/protein's expression
+#' @param annotation A data frame with mediators' annotation, must include columns "chr" and "pos"
+#' @param qtl.geno A matrix, haplotype probabilities at QTL we try to mediate
+#' @param covar A matrix with additive covariates
+#' @param method A method to handle missing cases
+#' @param verbose If TRUE display information about the progress
+#' 
 #' @seealso \code{\link{plot.mediation}}, \code{\link{kplot}}
-
+#' 
 #' @examples
 #' data(Tmem68)
-#' med <- mediation.scan(target=Tmem68$target,
-#'                       mediator=Tmem68$mediator,
-#'                       annotation=Tmem68$annotation,
-#'                       covar=Tmem68$covar,
-#'                       qtl.geno=Tmem68$qtl.geno,
-#'                       method="double-lod-diff")
-#' plot(med, main="double-lod-diff")
+#' med <- mediation.scan(target = Tmem68$target,
+#'                       mediator = Tmem68$mediator,
+#'                       annotation = Tmem68$annotation,
+#'                       covar = Tmem68$covar,
+#'                       qtl.geno = Tmem68$qtl.geno,
+#'                       method = "double-lod-diff")
+#' plot(med)
+#' @export
 
-mediation.scan <- function(target, mediator, annotation, qtl.geno, covar=NULL,
-                           method=c("double-lod-diff", "ignore", "lod-diff", "lod-ratio"), verbose=TRUE) {
+mediation.scan <- function(target, 
+                           mediator, 
+                           annotation, 
+                           qtl.geno, 
+                           covar=NULL,
+                           method=c("double-lod-diff", "ignore", "lod-diff", 
+                                    "lod-ratio"), 
+                           verbose=TRUE) {
 
   # calculates log10-Likelihood of linear model y ~ 1 + X
   LL <- function(y, X) {
