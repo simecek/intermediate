@@ -1,15 +1,16 @@
 Package: intermediate
 Type: Package
 Title: eQTl/pQTL Mediation analysis
-Version: 0.2-1
-Date: 2016-06-16
-Author: Petr Simecek, Steve Munger, Gary Churchill
+Version: 0.2-2
+Date: 2017-02-01
+Author: Petr Simecek, Steven Munger, Gary Churchill
 Maintainer: Petr Simecek <petrs@jax.org>
 Description: It searches for a mediator M that would explain Q->T relationship
-Suggested: qtlcharts,
+Suggested: plotly,
            htmlwidgets,
            knitr,
            testthat
 License: GPL-3
 LazyData: TRUE
 URL: https://github.com/simecek/intermediate
+RoxygenNote: 6.0.0
