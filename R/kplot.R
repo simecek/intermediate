@@ -48,7 +48,39 @@ kplot <- function(med, symbol.col="symbol", chrlen=mouse.chrlen, ...){
   chrcolor <- factor(chrcolor, levels=1:6)
   names(chrcolor) <- unique.chr
   
-  plot_ly(med, x=~GMB, y=~LOD, type = 'scatter', mode = 'markers',
-          hoverinfo = 'text', color = chrcolor[med$CHR],
-          text = ~paste(med$SYMBOL)) %>% layout(showlegend = FALSE)   
+  med$color = chrcolor[med$CHR]
+  
+  # calculates breakpoints between chromosomes
+  get_chr_breaks <- function(chr, gmb) {
+    tmp <- data.frame(chr, gmb)
+    tmp2 <- tmp %>% group_by(chr) %>% summarize(maxgmb = max(gmb))
+    gmb.breakpoints <- c(0, sort(tmp2$maxgmb))
+    return(sort(gmb.breakpoints))
+  }
+  
+  # calculates where to plot chromosome name
+  get_chr_middle_points <- function(chr, gmb) {
+    tmp <- data.frame(chr, gmb)
+    tmp2 <- tmp %>% group_by(chr) %>% summarize(maxgmb = min(gmb)/2 + max(gmb)/2)
+    gmb.breakpoints <- sort(tmp2$maxgmb)
+    return(sort(gmb.breakpoints))
+  }
+  
+  chrs <- c(as.character(1:19), "X")
+  gene.breaks <- get_chr_breaks(med$CHR, med$GMB)
+  gene.mid <- get_chr_middle_points(med$CHR, med$GMB)
+  
+  line.style <- theme_bw()$panel.grid.major
+  pl <- ggplot(med, aes(x=GMB, y=LOD, color=color, text=SYMBOL)) +
+    geom_point() +
+    scale_x_continuous(breaks=gene.mid, labels = chrs, minor_breaks=gene.breaks, expand=c(0,0)) +
+    theme_bw() +
+    theme(legend.position="none") +
+    theme(panel.grid.major.x = element_blank()) + 
+    theme(panel.grid.minor.x = line.style) +
+    xlab('Position')
+    
+  
+  ggplotly(pl, tooltip="text")
+  
 }

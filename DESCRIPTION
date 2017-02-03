@@ -7,6 +7,8 @@ Author: Petr Simecek, Steven Munger, Gary Churchill
 Maintainer: Petr Simecek <petrs@jax.org>
 Description: It searches for a mediator M that would explain Q->T relationship
 Suggested: plotly,
+           ggplot2,
+           dplyr,
            htmlwidgets,
            knitr,
            testthat
