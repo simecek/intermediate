@@ -27,10 +27,14 @@ med <- mediation.scan(target = Tmem68$target,
                       annotation = Tmem68$annotation,
                       covar = Tmem68$covar,
                       qtl.geno = Tmem68$qtl.geno)
+
+theme_set(theme_bw())
 kplot(med, symbol.col="symbol")
 
 # save the plot as HTML page
-pl <- kplot(med, symbol.col="symbol")
+gp <- kplot(med, symbol.col="symbol") 
+pl <- ggplotly(gp, tooltip="text")
+pl
 tmpdir <- tempdir()
 htmlwidgets::saveWidget(pl, paste0(tmpdir, "/Tmem68.html"),
                         selfcontained=TRUE)

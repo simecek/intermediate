@@ -18,10 +18,14 @@
 #'                       annotation = Tmem68$annotation,
 #'                       covar = Tmem68$covar,
 #'                       qtl.geno = Tmem68$qtl.geno)
+#' 
+#' theme_set(theme_bw())
 #' kplot(med, symbol.col="symbol")
 #'
 #' # save the plot as HTML page
-#' pl <- kplot(med, symbol.col="symbol")
+#' gp <- kplot(med, symbol.col="symbol") 
+#' pl <- ggplotly(gp, tooltip="text")
+#' pl
 #' tmpdir <- tempdir()
 #' htmlwidgets::saveWidget(pl, paste0(tmpdir, "/Tmem68.html"),
 #'                         selfcontained=TRUE)
@@ -35,7 +39,7 @@ kplot <- function(med, symbol.col="symbol", chrlen=mouse.chrlen, ...){
   
   #Check input
   stopifnot(c("CHR", "POS","LOD") %in% names(med))
-
+  
   if (!("GMB" %in% names(med)))
     med$GMB <- gmb.coordinates(med$CHR, med$POS, chrlen=chrlen)
   if (symbol.col %in% names(med)) symbols <- med[,symbol.col] else symbols <- med[,1]
@@ -66,21 +70,20 @@ kplot <- function(med, symbol.col="symbol", chrlen=mouse.chrlen, ...){
     return(sort(gmb.breakpoints))
   }
   
-  chrs <- c(as.character(1:19), "X")
+  chrs <- c(as.character(1:19), "X", "Y", "M")
+  chrs <- chrs[chrs %in% unique(med$CHR)]
   gene.breaks <- get_chr_breaks(med$CHR, med$GMB)
   gene.mid <- get_chr_middle_points(med$CHR, med$GMB)
   
+  # to be corrected !!!
   line.style <- theme_bw()$panel.grid.major
-  pl <- ggplot(med, aes(x=GMB, y=LOD, color=color, text=SYMBOL)) +
+  
+  ggplot(med, aes(x=GMB, y=LOD, color=color, text=SYMBOL)) +
     geom_point() +
     scale_x_continuous(breaks=gene.mid, labels = chrs, minor_breaks=gene.breaks, expand=c(0,0)) +
-    theme_bw() +
     theme(legend.position="none") +
     theme(panel.grid.major.x = element_blank()) + 
     theme(panel.grid.minor.x = line.style) +
     xlab('Position')
-    
-  
-  ggplotly(pl, tooltip="text")
   
 }
